@@ -1,22 +1,43 @@
-from itertools import *
-
-
-total = []
+total = 0
 table = {}
-with open("e.txt") as fillin:
+with open("i.txt") as fillin:
     lignes = fillin.readlines()
 line = lignes[0]
-maxId = len(line[::2]) - 1
-maxIndex = -1
-for c in line[::2]:
-    maxIndex += int(c)
-print(maxIndex)
+extension = []
+compacted = []
+maxindex = 0
+for i, c in enumerate(line):
+    # print(i)
+    if i % 2:
+        for k in range(int(c)):
+            extension.append(".")
+    else:
+        maxindex += int(c)
+        nb = str(i // 2)
 
-line = list(line)
-mult = []
-for i in range(maxIndex):
-    mult.append(i % maxId)
-print(mult)
+        for k in range(int(c)):
+            # print(str(i // 2))
+            extension.append(nb)
+            compacted.append(nb)
+print("etape 1 terminee")
+# print(compacted)
+
+final = []
+for j in range(maxindex):
+    if extension[j] != ".":
+        final.append(extension[j])
+    else:
+        final.append(compacted.pop())
+print(final)
+print("etape 2 terminee")
+
+for n, val in enumerate(final):
+    total += n * int(val)
+print(total)
+
+
+
+
 
 
 
